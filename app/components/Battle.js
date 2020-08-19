@@ -3,16 +3,15 @@ import {
   FaUserFriends,
   FaFighterJet,
   FaTrophy,
-  FaUserFriend,
   FaTimesCircle,
 } from "react-icons/fa";
 import PropTypes from "prop-types";
-import Results from "./Result";
+import Results from "./Results";
 
-function Instruction() {
+function Instructions() {
   return (
     <div className="instructions-container">
-      <h1 className="center-text header-lg">Instruction</h1>
+      <h1 className="center-text header-lg">Instructions</h1>
       <ol className="container-sm grid center-text battle-instructions">
         <li>
           <h3 className="header-sm">Enter two Github users</h3>
@@ -28,7 +27,7 @@ function Instruction() {
         </li>
         <li>
           <h3 className="header-sm">See the winners</h3>
-          <FaTrophy className="bg-light" color="rgb(255,215,0)" size={140} />
+          <FaTrophy className="bg-light" color="rgb(255, 215, 0)" size={140} />
         </li>
       </ol>
     </div>
@@ -42,6 +41,7 @@ class PlayerInput extends React.Component {
     this.state = {
       username: "",
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -55,7 +55,6 @@ class PlayerInput extends React.Component {
       username: event.target.value,
     });
   }
-
   render() {
     return (
       <form className="column player" onSubmit={this.handleSubmit}>
@@ -73,7 +72,7 @@ class PlayerInput extends React.Component {
             onChange={this.handleChange}
           />
           <button
-            className="btn btn-dark"
+            className="btn dark-btn"
             type="submit"
             disabled={!this.state.username}
           >
@@ -112,6 +111,7 @@ function PlayerPreview({ username, onReset, label }) {
     </div>
   );
 }
+
 PlayerPreview.propTypes = {
   username: PropTypes.string.isRequired,
   onReset: PropTypes.func.isRequired,
@@ -127,6 +127,7 @@ export default class Battle extends React.Component {
       playerTwo: null,
       battle: false,
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
@@ -143,14 +144,16 @@ export default class Battle extends React.Component {
   render() {
     const { playerOne, playerTwo, battle } = this.state;
 
-    if (battle) {
+    if (battle === true) {
       return <Results playerOne={playerOne} playerTwo={playerTwo} />;
     }
+
     return (
       <React.Fragment>
-        <Instruction />
+        <Instructions />
+
         <div className="players-container">
-          <h1 className="center-text header-lg">Player</h1>
+          <h1 className="center-text header-lg">Players</h1>
           <div className="row space-around">
             {playerOne === null ? (
               <PlayerInput
