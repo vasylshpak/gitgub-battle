@@ -23,7 +23,7 @@ export default function Card({
     </div>
   );
 }
-
+``;
 Card.propTypes = {
   header: PropTypes.string.isRequired,
   subheader: PropTypes.string,
