@@ -1,19 +1,20 @@
 import React from "react";
-import ReactDom from "react-dom";
+import ReactDOM from "react-dom";
 import "./index.css";
 import Popular from "./components/Popular";
 import Battle from "./components/Battle";
 import { ThemeProvider } from "./contexts/theme";
+import Nav from "./components/Nav";
 
 class App extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
 
     this.state = {
       theme: "light",
       toggleTheme: () => {
         this.setState(({ theme }) => ({
-          theme: thee === "light" ? "dark" : "light",
+          theme: theme === "light" ? "dark" : "light",
         }));
       },
     };
@@ -21,12 +22,16 @@ class App extends React.Component {
   render() {
     return (
       <ThemeProvider value={this.state}>
-        <div className="component">
-          <Battle />
+        <div className={this.state.theme}>
+          <div className="container">
+            <Nav />
+
+            <Battle />
+          </div>
         </div>
       </ThemeProvider>
     );
   }
 }
 
-ReactDom.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
